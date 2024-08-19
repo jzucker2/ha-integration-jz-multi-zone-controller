@@ -20,6 +20,8 @@ from homeassistant.const import (
     CONF_NAME,
     CONF_UNIQUE_ID,
     CONF_SOURCE,
+    SERVICE_TURN_ON,
+    SERVICE_TURN_OFF,
     SERVICE_VOLUME_UP,
     SERVICE_VOLUME_SET,
     SERVICE_VOLUME_DOWN,
@@ -150,6 +152,16 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         SERVICE_VOLUME_DOWN,
         {},
         "async_volume_down",
+    )
+    platform.async_register_entity_service(
+        SERVICE_TURN_ON,
+        {},
+        "async_turn_on",
+    )
+    platform.async_register_entity_service(
+        SERVICE_TURN_OFF,
+        {},
+        "async_turn_off",
     )
     platform.async_register_entity_service(
         SERVICE_VOLUME_TOGGLE_MUTE,
@@ -427,6 +439,52 @@ class MultizoneSensor(SensorEntity):
                 target={ATTR_ENTITY_ID: self._get_active_zones()},
                 context=self._context
             )
+
+    # I added this
+
+    def turn_on(self, mute):
+        """Turn on the active zones."""
+        self.hass.services.call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_ON,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    async def async_turn_on(self):
+        """Turn on the active zones."""
+        await self.hass.services.async_call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_ON,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    def turn_off(self, mute):
+        """Turn on the active zones."""
+        self.hass.services.call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_OFF,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    async def async_turn_off(self):
+        """Turn on the active zones."""
+        await self.hass.services.async_call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_OFF,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
 
     @callback
     def _async_multizone_sensor_state_listener(self, event):

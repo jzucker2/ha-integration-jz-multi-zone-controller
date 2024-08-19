@@ -6,6 +6,16 @@ next_zone:
   description: Cycle through available media_player zones.
   target:
 
+turn_on:
+  name: Turn on zone
+  description: Turn a zone on
+  target:
+
+turn_off:
+  name: Turn off zone
+  description: Turn a zone off
+  target:
+
 volume_up:
   name: Turn up volume
   description: Turn a zone volume up.
