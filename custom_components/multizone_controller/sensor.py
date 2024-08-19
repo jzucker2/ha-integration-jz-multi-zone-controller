@@ -440,6 +440,52 @@ class MultizoneSensor(SensorEntity):
                 context=self._context
             )
 
+    # I added this
+
+    def turn_on(self, mute):
+        """Turn on the active zones."""
+        self.hass.services.call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_ON,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    async def async_turn_on(self):
+        """Turn on the active zones."""
+        await self.hass.services.async_call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_ON,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    def turn_off(self, mute):
+        """Turn on the active zones."""
+        self.hass.services.call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_OFF,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
+    async def async_turn_off(self):
+        """Turn on the active zones."""
+        await self.hass.services.async_call(
+            MEDIA_PLAYER_DOMAIN,
+            SERVICE_TURN_OFF,
+            {},
+            blocking=True,
+            target={ATTR_ENTITY_ID: self._get_active_zones()},
+            context=self._context
+        )
+
     @callback
     def _async_multizone_sensor_state_listener(self, event):
         """Handle media_player state changes."""
