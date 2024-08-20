@@ -124,7 +124,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
     async_add_entities(
         [
-            MultizoneSensor(
+            JZMultiZoneSensor(
                 unique_id,
                 name,
                 zones,
@@ -190,7 +190,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     )
 
 
-class MultizoneSensor(SensorEntity):
+class JZMultiZoneSensor(SensorEntity):
     """Representation of a multizone sensor."""
 
     def __init__(
