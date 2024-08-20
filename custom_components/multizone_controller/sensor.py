@@ -50,7 +50,7 @@ CONF_VOLUME_MAX = "volume_max"
 CONF_VOLUME_MIN = "volume_min"
 CONF_COMBINED = "combined"
 
-DEFAULT_NAME = "JZ Active Media Player"
+DEFAULT_NAME = "JZ Multi Zone Media Player"
 DEFAULT_COMBINED_NAME = "All Zones"
 DEFAULT_COMBINED_ICON = "mdi:speaker-multiple"
 DEFAULT_ZONE_NAME = "Zone"
