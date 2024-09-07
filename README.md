@@ -6,3 +6,4 @@ Greatly inspired by https://github.com/Petro31/ha-integration-multizone-controll
 
 * https://developers.home-assistant.io/docs/dev_101_services/
 * https://github.com/home-assistant/core/blob/dev/homeassistant/components/select/__init__.py
+* https://github.com/home-assistant/core/blob/dev/homeassistant/components/media_player/__init__.py
